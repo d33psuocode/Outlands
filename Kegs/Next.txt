@@ -1,0 +1,368 @@
+// Refill keg START script
+// Place in script directory
+//      \Kegs\Next
+//
+// To use:
+// =======
+// Run Start script instead
+// DO NOT CALL THIS SCRIPT ALONE
+
+sysmsg "Keg Next" 44
+
+// world save check
+if insysmsg 'will save' 'system'
+    sysmsg "Pausing for world save"
+    waitforsysmsg "save complete"
+    clearsysmsg
+endif
+
+sysmsg "Clearing shelf config" 54
+dclick 'shelf'
+waitforgump 3232825965
+pause 500
+gumpresponse 16
+waitforgump 3232825965
+gumpresponse 16
+pause 500
+gumpclose
+pause 1500
+
+// Lethal poison
+if inlist 'configs' 'lethal poison'
+    sysmsg "Configuring lethal poison" 81
+    
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 209
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpresponse 224
+    waitforgump 3232825965
+    gumpclose
+
+    poplist 'configs' 'lethal poison'
+    
+elseif inlist 'configs' 'deadly poison'
+    sysmsg "Configuring deadly poison" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 208
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpresponse 223
+    waitforgump 3232825965
+    gumpclose
+
+    poplist 'configs' 'deadly poison'
+
+elseif inlist 'configs' 'greater poison'
+    sysmsg "Configuring greater poison" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 207
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpresponse 222
+    waitforgump 3232825965
+    gumpclose
+
+    poplist 'configs' 'greater poison'
+
+elseif inlist 'configs' 'heal'
+    sysmsg "Configuring heal" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 16
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 16
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 5
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 200
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 215
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 215
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 215
+    waitforgump 3232825965
+    pause 500
+    gumpclose
+
+    poplist 'configs' 'heal'
+
+elseif inlist 'configs' 'cure'
+    sysmsg "Configuring cure" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 16
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 16
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 5
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 201
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 216
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 216
+    waitforgump 3232825965
+    pause 500
+    gumpresponse 216
+    waitforgump 3232825965
+    pause 500
+    gumpclose
+
+    poplist 'configs' 'cure'
+    
+elseif inlist 'configs' 'resist'
+    sysmsg "Configuring resist" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 205
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpresponse 220
+    waitforgump 3232825965
+    gumpclose
+
+    poplist 'configs' 'resist'
+
+elseif inlist 'configs' 'strength'
+    sysmsg "Configuring strength" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 203
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpresponse 218
+    waitforgump 3232825965
+    gumpclose
+
+    poplist 'configs' 'strength'
+
+elseif inlist 'configs' 'agility'
+    sysmsg "Configuring agility" 81
+        
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 204
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpresponse 219
+    waitforgump 3232825965
+    gumpclose
+
+    poplist 'configs' 'agility'
+
+elseif inlist 'configs' 'explosion'
+    sysmsg "Configuring explosion" 81
+ 
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 206
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpresponse 221
+    waitforgump 3232825965
+    gumpclose
+       
+    poplist 'configs' 'explosion'
+
+elseif inlist 'configs' 'refresh'
+    sysmsg "Configuring refresh" 81
+
+    dclick 'shelf'
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 16
+    waitforgump 3232825965
+    gumpresponse 5
+    waitforgump 3232825965
+    gumpresponse 202
+    waitforgump 3232825965
+    gumpresponse 217
+    waitforgump 3232825965
+    gumpresponse 217
+    waitforgump 3232825965
+    gumpresponse 217
+    waitforgump 3232825965
+    gumpclose
+
+   poplist 'configs' 'refresh'
+
+else
+    
+   sysmsg "DONE!" 92
+   stop
+
+endif
+
+// world save check
+if insysmsg 'will save' 'system'
+  sysmsg "Pausing for world save"
+  waitforsysmsg "save complete"
+  clearsysmsg
+endif
+
+sysmsg "Done. Calling Kegs\Fill" 65
+script "Kegs\Fill"

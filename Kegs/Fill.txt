@@ -1,0 +1,170 @@
+// Keg fill script
+// Place in script directory
+//      \Kegs\Fill
+//
+// To use:
+// =======
+// Run Start script instead
+// DO NOT CALL THIS SCRIPT ALONE
+
+sysmsg "Keg Fill Script" 44
+
+sysmsg "Dumping pack" 56
+menu 'shelf' 0
+waitfortarget
+target 'self'
+waitforgump 3232825965
+gumpclose
+pause 2500
+
+sysmsg "Dumping kegs" 56
+while findtype 6464 backpack any as keg
+    sysmsg "dumping keg" 55
+    lift keg 1
+    drop 'shelf' -1 -1 0
+    pause 2500
+    lift keg 1
+    drop 'kegbox' -1 -1 0
+    pause 2500
+endwhile
+
+sysmsg "Pulling empty keg" 22
+while counttype 6464 backpack any < 1
+    sysmsg "Restock 3" 48
+    sysmsg "Setting hot bag" 15
+    if targetexists 
+        hotkey 'Cancel Current Target'
+    endif
+    hotkey 'Set Restock Hotbag-03'
+    wft 2500
+    target 'self'
+    pause 1500
+    sysmsg "Restock 3" 51    
+    restock 3
+    wft 2500
+    target kegbox
+    pause 5000
+endwhile
+
+sysmsg "Opening potion boxes" 71
+foreach box in boxes
+    dclick box
+    pause 2500
+endfor
+
+clearsysmsg
+
+sysmsg "Filling keg" 71
+
+// Run until 100 empty bottles
+while counttype 3854 < 100
+    
+    // Resupply 
+    sysmsg "Grabbing potions" 71
+    menu 'shelf' 1
+    pause 2500
+    
+    // If we are out of potions
+    if insysmsg 'unavailable'
+        sysmsg "Out of potions" 85
+        // Drop partial keg back on shelf
+        while findtype 6464 backpack as keg
+            sysmsg "dumping partial keg" 55
+            lift keg 1
+            drop 'shelf' -1 -1 0
+            pause 2500
+            lift keg 1
+            drop 'kegbox' -1 -1 0
+            pause 2500
+        endwhile
+        sysmsg "Done. Calling Kegs\Next" 65
+        script "Kegs\Next"
+    endif
+        
+    foreach potion in Potions
+        if findtype potion backpack as pots
+            hotkey 'Set Last Target'
+            waitfortarget 
+            targettype "keg" backpack
+            lift pots 999
+            drop lasttarget 0 0 0
+            pause 1500
+            if insysmsg "not hold any more"
+                sysmsg "got hold any more msg" 32
+                break
+            endif
+        endif
+    endfor
+
+endwhile
+
+sysmsg "Keg full" 71
+
+if findtype 6464 backpack as full
+   
+    sysmsg "Dropping off full keg" 71
+
+    // get label for this aspect
+    getlabel full kegname
+
+    if 'lethal poison' in kegname
+        lift full
+        drop lpbag
+        pause 2500
+    elseif 'deadly poison' in kegname
+        lift full
+        drop dpbag
+        pause 2500
+    elseif 'greater poison' in kegname
+        lift full
+        drop gpbag
+        pause 2500
+    elseif 'heal' in kegname
+        lift full
+        drop healbag
+        pause 2500
+    elseif 'cure' in kegname
+        lift full
+        drop curebag
+        pause 2500
+    elseif 'resist' in kegname
+        lift full
+        drop resistbag
+        pause 2500
+    elseif 'strength' in kegname
+        lift full
+        drop strbag
+        pause 2500
+    elseif 'agility' in kegname
+        lift full
+        drop dexbag
+        pause 2500
+    elseif 'explosion' in kegname
+        lift full
+        drop explobag
+        pause 2500
+    elseif 'refresh' in kegname
+        lift full
+        drop refreshbag
+        pause 2500
+    else
+        sysmsg "I HAVE NO IDEA WHAT THIS IS!!" 22
+        stop
+    endif
+
+endif
+
+// Check secures not full
+if findtype 6464 backpack
+    sysmsg "UNABLE TO DROP KEG!? BOXES FULL?" 22   
+    stop
+endif
+
+// world save check
+if insysmsg 'will save' 'system'
+  sysmsg "Pausing for world save"
+  waitforsysmsg "save complete"
+  clearsysmsg
+endif
+
+loop

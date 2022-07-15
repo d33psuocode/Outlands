@@ -1,0 +1,47 @@
+// Refill keg START script
+// Place in script directory
+// 		\Kegs\Start
+//
+// To use:
+// =======
+// Configure potions you want to refill below
+// (or you can do them all)
+//
+// Run this script to start
+
+sysmsg "Fill Start" 44
+
+// Edit your potion bag boxes here:
+removelist 'boxes'
+createlist 'boxes'
+pushlist 'boxes' 0x42A8BAB1
+pushlist 'boxes' 0x484F505B
+
+// Edit your config here:
+removelist 'configs'
+createlist 'configs'
+//pushlist 'configs' 'lethal poison'
+//pushlist 'configs' 'deadly poison'
+//pushlist 'configs' 'greater poison'
+pushlist 'configs' 'heal'
+pushlist 'configs' 'cure'
+pushlist 'configs' 'resist'
+pushlist 'configs' 'strength'
+pushlist 'configs' 'agility'
+pushlist 'configs' 'explosion'
+pushlist 'configs' 'refresh'
+
+// Do not modify
+removelist 'Potions'
+createlist 'Potions'
+pushlist 'Potions' 'Yellow Potion'
+pushlist 'Potions' 'Red Potion'
+pushlist 'Potions' 'Orange Potion'
+pushlist 'Potions' 'Green Potion'
+pushlist 'Potions' 'Purple Potion'
+pushlist 'Potions' 'Black Potion'
+pushlist 'Potions' 'White Potion'
+pushlist 'Potions' 'Blue Potion'
+
+sysmsg "Done. Calling Kegs\Next" 65
+script "Kegs\Next"
