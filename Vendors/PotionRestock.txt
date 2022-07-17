@@ -1,0 +1,128 @@
+// Potion vendor restock script
+// by D33ppurple
+//
+// Create following variables:
+// ===========================
+// packy - packy which holds your kegs
+// venlpbag - lethal poison bag
+// vendpbag - deadly poison bag
+// vengpbag - greater poison bag
+// venrefreshbag - refresh bag
+// venexplobag - explo bag
+// venstrbag - str bag
+// vendexbag - dex bag
+// venresistbag - resist bag
+// vencurebag - cure bag
+// venhealbag - heal bag
+//
+// for all bags on your vendor
+//
+// To use:
+// =======
+// 1) Set your prices in script below
+// 2) Open your potion vendor(s)
+// 3) Have packy with kegs near you
+// 4) Run script
+//
+
+sysmsg "Vendor restock start" 85
+sysmsg "Open your vendor(s) packs to start" 16
+pause 2500
+
+// open packy
+dclick 'packy'
+pause 2500
+
+sysmsg "Emptying pony..." 48
+while findtype 6464 packy as keg
+
+    //! world save check
+    if insysmsg 'will save' 'system'
+      sysmsg "Pausing for world save"
+      waitforsysmsg "save complete"
+      clearsysmsg
+    endif
+
+    // get label
+    getlabel keg kegname
+
+    // drop keg on vendor
+    if 'lethal poison' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop venlpbag
+        pause 2500
+        promptresponse '13999'
+		pause 2500
+    elseif 'deadly poison' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop vendpbag
+        pause 2500
+        promptresponse '5999'
+		pause 2500
+    elseif 'greater poison' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop vengpbag
+        pause 2500
+        promptresponse '3499'
+		pause 2500
+    elseif 'heal' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop venhealbag
+        pause 2500
+        promptresponse '3200'
+		pause 2500
+    elseif 'cure' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop vencurebag
+        pause 2500
+        promptresponse '3200'
+		pause 2500
+    elseif 'resist' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop venresistbag
+        pause 2500
+        promptresponse '4000'
+		pause 2500
+    elseif 'strength' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop venstrbag
+        pause 2500
+        promptresponse '3200'
+		pause 2500
+    elseif 'agility' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop vendexbag
+        pause 2500
+        promptresponse '3200'
+		pause 2500
+    elseif 'explosion' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop venexplobag
+        pause 2500
+        promptresponse '3500'
+		pause 2500
+    elseif 'refresh' in kegname
+    	sysmsg kegname 65
+        lift keg
+        drop venrefreshbag
+        pause 2500
+        promptresponse '3200'
+		pause 2500
+    else
+        sysmsg "I HAVE NO IDEA WHAT THIS IS!!" 22
+        stop
+    endif
+
+endwhile
+
+overhead "Done!" 44
+sysmsg "Done!" 44
