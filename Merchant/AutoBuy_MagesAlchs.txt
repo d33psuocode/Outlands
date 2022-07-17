@@ -1,0 +1,365 @@
+
+// variables:
+// >packy
+// >magerunebox
+// >supplybox
+// >mybook
+
+
+removelist 'regs'
+createlist 'regs'
+
+// regs
+pushlist regs 'Black Pearl%s%'
+pushlist regs 'Blood Moss'
+pushlist regs 'Mandrake Root%s%'
+
+removelist 'buys'
+createlist 'buys'
+
+// regs
+pushlist buys 'Black Pearl%s%'
+pushlist buys 'Blood Moss'
+pushlist buys 'Mandrake Root%s%'
+pushlist buys 'Garlic'
+pushlist buys 'Ginseng'
+pushlist buys "Spider's Silk"
+pushlist buys "Sulfurous Ash"
+pushlist buys "Nightshade"
+// bottles
+pushlist 'buys' 3854
+// scroll
+pushlist 'buys' 0xef3 
+
+// check packy
+if not find 'packy'
+    overhead "Hey, where is my packy?!" 43
+    stop
+endif
+
+msg "bank"
+pause 2500
+
+if not find 'magerunebox'
+    overhead "Hey, where is the mages rune box?" 43
+    stop
+endif
+
+dclick magerunebox
+pause 2500
+
+// set organizer 2 bag
+organizer 2 set
+wft
+target 'supplybox'
+
+// inventory runes
+removelist 'shops'
+createlist 'shops'
+
+sysmsg "Rune inventory" 13
+clearignore
+while findtype 'recall rune' magerunebox as rune
+    getlabel rune runelabel
+    sysmsg runelabel 44
+    sysmsg rune 44
+    pushlist 'shops' rune
+    ignore rune
+    pause 100
+endwhile
+sysmsg "Done" 13
+
+sysmsg "Starting shopping trip" 13
+
+// iterate runes
+foreach shop in shops
+
+    // check if we are at bank
+    if not position 3052 545 40
+        sysmsg "Heading to bank" 44
+        cast "recall"
+        wft
+        target mybook
+        pause 2500
+    endif
+
+    msg "bank"
+    pause 1000
+
+    dclick 'packy'
+    pause 1500
+    dclick backpack
+    pause 1500
+
+    sysmsg "Emptying pack..." 48
+    organizer 2
+    pause 5000
+    sysmsg "Done" 48
+
+    sysmsg "Emptying pony..." 48
+    foreach buy in buys
+        while findtype buy packy as move
+            lift move 9999
+            drop supplybox -1 -1
+            pause 1500
+        endwhile
+    endfor
+    sysmsg "Done" 48
+
+    // restock
+    sysmsg "Restocking" 48
+    hotkey 'Set Restock Hotbag-02'
+    wft
+    target 'self'
+    foreach reg in regs
+        if counttype reg backpack < 20
+            sysmsg "Restocking" 78
+            restock 2
+            wft
+            target supplybox
+            pause 3500
+        endif
+    endfor
+    sysmsg "Done" 48
+
+    // world save check
+    if insysmsg 'will save' 'system'
+      sysmsg "Pausing for world save"
+      waitforsysmsg "save complete"
+      clearsysmsg
+    endif
+
+    // reset vendors list
+    removelist 'vendors'
+    createlist 'vendors'
+
+    // resolve location
+    removelist loc
+    createlist loc
+    pushlist loc shop
+
+    if inlist loc 1094709364
+        sysmsg "VENDOR : OUTPOST" 88
+        // Odon 
+        pushlist 'vendors' 0x16F
+        // Ordano
+        pushlist 'vendors' 0x171
+        // Geva
+        pushlist 'vendors' 0x172        
+
+    elseif inlist 'loc' 1094717365
+        sysmsg "VENDOR : PREV 4 (South)" 88
+        // Gideon
+        pushlist 'vendors' 0x44
+        // Christable
+        pushlist 'vendors' 0x45
+        // Arlene
+        pushlist 'vendors' 0x46
+
+    elseif inlist 'loc' 1094734101
+        sysmsg "VENDOR : CAMBRIA MAGE 1" 88
+        // Magdaline
+        pushlist 'vendors' 0x4BA97
+        // Kanika
+        pushlist 'vendors' 0xF0
+        // Zuza
+        pushlist 'vendors' 0xF2
+
+    elseif inlist 'loc' 1094867022
+        sysmsg "VENDOR : ANDARIA 1" 88
+        // Kelli
+        pushlist 'vendors' 0xA8
+        // Shani
+        pushlist 'vendors' 0xAC
+
+    elseif inlist 'loc' 1094855950
+        sysmsg "VENDOR : HORSESHOE BAY" 88
+        // Thera
+        pushlist 'vendors' 0x15E
+        // Caitlin
+        pushlist 'vendors' 0x15F
+
+    elseif inlist 'loc' 1094826862
+        sysmsg "VENDOR : CAMBRIA 2" 88
+        // Garritt
+        pushlist 'vendors' 0xFE
+
+    elseif inlist 'loc' 1094888410
+        sysmsg "VENDOR : ANDARIA 2" 88
+        // Ines
+        pushlist 'vendors' 0xA9
+        // Mae
+        pushlist 'vendors' 0xAA
+
+    elseif inlist 'loc' 1094910243
+        sysmsg "VENDOR : ANDARIA WEST" 88
+        // Dane
+        pushlist 'vendors' 0xCF
+        // Peyton
+        pushlist 'vendors' 0xCE
+        // Rudyard
+        pushlist 'vendors' 0xD4
+
+    elseif inlist 'loc' 1094954663
+        sysmsg "VENDOR : ANDARIA EAST" 88
+        // Adrian
+        pushlist 'vendors' 0xD1
+        // Shunnar
+        pushlist 'vendors' 0xD0
+
+    elseif inlist 'loc' 1094989942
+        sysmsg "VENDOR : TERRAN" 88
+        // Asta
+        pushlist 'vendors' 0x198
+        // Adena
+        pushlist 'vendors' 0x199
+        // Lunt
+        pushlist 'vendors' 0x19A         
+
+    elseif inlist 'loc' 1095117923
+        sysmsg "VENDOR : PREV-1 NORTH" 88
+        // Brandy
+        pushlist 'vendors' 0x3BB
+        // Ginger
+        pushlist 'vendors' 0x64BA2
+
+    elseif inlist 'loc' 1095142700
+        sysmsg "VENDOR : PREV-1 SOUTH" 88
+        // Raynor
+        pushlist 'vendors' 0x37A
+        // Garrett
+        pushlist 'vendors' 0x3CE
+
+    elseif inlist 'loc' 1095169035
+        sysmsg "VENDOR : PREV-2" 88
+        // Azina
+        pushlist 'vendors' 0x43F
+        // Marden
+        pushlist 'vendors' 0x44C
+    
+    elseif inlist 'loc' 1095320925
+        sysmsg "VENDOR : PREV-3" 88
+        // Cato
+        pushlist 'vendors' 0x42
+        // Iona
+        pushlist 'vendors' 0x43
+
+    elseif inlist 'loc' 1095241699
+        sysmsg "VENDOR : CAMBRIA-3" 88
+        // Valeria
+        pushlist 'vendors' 0xFB
+
+    elseif inlist 'loc' 1095250505
+        sysmsg "VENDOR : CAMBRIA-4" 88
+        // Jezebel
+        pushlist 'vendors' 0xF3
+
+    elseif inlist 'loc' 1095327597
+        sysmsg "VENDOR : ANCHORS REST 1" 88
+        // Akili
+        pushlist 'vendors' 0x2D4
+        // Tem
+        pushlist 'vendors' 0x2D7
+
+    elseif inlist 'loc' 1095377595
+        sysmsg "VENDOR : ANCHORS REST 2" 88
+        // Ryann
+        pushlist 'vendors' 0x346
+
+    elseif inlist 'loc' 1095398678
+        sysmsg "VENDOR : ANCHORS REST 3" 88
+        // Rigby
+        pushlist 'vendors' 0x34A
+        // Diane
+        pushlist 'vendors' 0x34F
+
+    else
+
+        overhead "I DONT KNOW WHAT THIS IS!!" 32
+        stop
+
+    endif
+
+    // recall to shop
+    while position 3052 545 40
+        sysmsg "Recalling" 51
+        cast "recall"
+        wft
+        target shop
+        pause 3500
+    endif
+
+    // buy from vendors
+    foreach vendor in vendors
+        sysmsg "Buying from vendor now"
+        sysmsg vendor 71
+        // if we bought something buy it again
+        removelist bought
+        createlist bought
+        pushlist bought vendor
+        while list bought > 0
+            clearlist 'bought'
+            menu vendor 1
+            pause 1500
+            if weight > 150
+                // move to pony
+                foreach buy in buys
+                    while findtype buy backpack
+                        sysmsg "moving to item to pony"
+                        lifttype buy 60000 backpack
+                        drop 'packy' 0 0 0
+                        pause 1500
+                        pushlist bought buy
+                    endwhile
+                endfor
+            endif
+        endwhile
+        sysmsg "--For loop end--"
+    endfor
+    
+    sysmsg "Restocking from pony" 91
+    restock 2
+    wft
+    target packy
+    pause 3500
+
+    while mana < 80
+        skill 'meditation'
+        pause 10000
+    endwhile
+
+    sysmsg "Done" 73
+
+endfor
+
+sysmsg "Done with all shops, dumping pony" 32
+
+sysmsg "Heading to bank" 44
+cast "recall"
+wft
+target mybook
+pause 2500
+
+msg "bank"
+pause 1000
+
+dclick 'packy'
+pause 1500
+dclick backpack
+pause 1500
+
+sysmsg "Emptying pack..." 48
+organizer 2
+pause 5000
+sysmsg "Done" 48
+
+sysmsg "Emptying pony..." 48
+foreach buy in buys
+    while findtype buy packy as move
+        lift move 9999
+        drop supplybox -1 -1
+        pause 1500
+    endwhile
+endfor
+
+headmsg "DONE!" 92
