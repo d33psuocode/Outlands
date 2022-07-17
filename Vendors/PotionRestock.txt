@@ -50,70 +50,70 @@ while findtype 6464 packy as keg
     if 'lethal poison' in kegname
         sysmsg kegname 65
         lift keg
-        drop venlpbag
+        drop venlpbag -1 -1 0
         pause 2500
         promptresponse '13999'
         pause 2500
     elseif 'deadly poison' in kegname
         sysmsg kegname 65
         lift keg
-        drop vendpbag
+        drop vendpbag -1 -1 0
         pause 2500
         promptresponse '5999'
         pause 2500
     elseif 'greater poison' in kegname
         sysmsg kegname 65
         lift keg
-        drop vengpbag
+        drop vengpbag -1 -1 0
         pause 2500
         promptresponse '3499'
         pause 2500
     elseif 'heal' in kegname
         sysmsg kegname 65
         lift keg
-        drop venhealbag
+        drop venhealbag -1 -1 0
         pause 2500
         promptresponse '3200'
         pause 2500
     elseif 'cure' in kegname
         sysmsg kegname 65
         lift keg
-        drop vencurebag
+        drop vencurebag -1 -1 0
         pause 2500
         promptresponse '3200'
         pause 2500
     elseif 'resist' in kegname
         sysmsg kegname 65
         lift keg
-        drop venresistbag
+        drop venresistbag -1 -1 0
         pause 2500
         promptresponse '4000'
         pause 2500
     elseif 'strength' in kegname
         sysmsg kegname 65
         lift keg
-        drop venstrbag
+        drop venstrbag -1 -1 0
         pause 2500
         promptresponse '3200'
         pause 2500
     elseif 'agility' in kegname
         sysmsg kegname 65
         lift keg
-        drop vendexbag
+        drop vendexbag -1 -1 0
         pause 2500
         promptresponse '3200'
         pause 2500
     elseif 'explosion' in kegname
         sysmsg kegname 65
         lift keg
-        drop venexplobag
+        drop venexplobag -1 -1 0
         pause 2500
         promptresponse '3500'
         pause 2500
     elseif 'refresh' in kegname
         sysmsg kegname 65
         lift keg
-        drop venrefreshbag
+        drop venrefreshbag -1 -1 0
         pause 2500
         promptresponse '3200'
         pause 2500
