@@ -48,75 +48,75 @@ while findtype 6464 packy as keg
 
     // drop keg on vendor
     if 'lethal poison' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop venlpbag
         pause 2500
         promptresponse '13999'
-		pause 2500
+        pause 2500
     elseif 'deadly poison' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop vendpbag
         pause 2500
         promptresponse '5999'
-		pause 2500
+        pause 2500
     elseif 'greater poison' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop vengpbag
         pause 2500
         promptresponse '3499'
-		pause 2500
+        pause 2500
     elseif 'heal' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop venhealbag
         pause 2500
         promptresponse '3200'
-		pause 2500
+        pause 2500
     elseif 'cure' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop vencurebag
         pause 2500
         promptresponse '3200'
-		pause 2500
+        pause 2500
     elseif 'resist' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop venresistbag
         pause 2500
         promptresponse '4000'
-		pause 2500
+        pause 2500
     elseif 'strength' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop venstrbag
         pause 2500
         promptresponse '3200'
-		pause 2500
+        pause 2500
     elseif 'agility' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop vendexbag
         pause 2500
         promptresponse '3200'
-		pause 2500
+        pause 2500
     elseif 'explosion' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop venexplobag
         pause 2500
         promptresponse '3500'
-		pause 2500
+        pause 2500
     elseif 'refresh' in kegname
-    	sysmsg kegname 65
+        sysmsg kegname 65
         lift keg
         drop venrefreshbag
         pause 2500
         promptresponse '3200'
-		pause 2500
+        pause 2500
     else
         sysmsg "I HAVE NO IDEA WHAT THIS IS!!" 22
         stop
