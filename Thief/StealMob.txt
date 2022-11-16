@@ -1,0 +1,40 @@
+// STEALMOB
+// by Deep Purple
+
+if findtype 52149 as bombs
+    getlabel bombs name
+    overhead name 31
+endif
+clearsysmsg 
+skill 'Stealing'
+wft 500
+if not targetexists 
+    overhead "WAIT" 55
+    stop
+endif
+clearsysmsg 
+overhead "{STEAL}" 95
+pause 10000
+if not targetexists 
+    stop
+endif
+if insysmsg "continue" or insysmsg "ready" or insysmsg "automatically"
+    overhead "DELAY" 29
+    pause 12000
+endif
+overhead "STEAL READY" 72
+while targetexists 
+    pause 100
+endwhile
+
+sysmsg "checking for 5s"
+removetimer 'check'
+createtimer 'check'
+while timer 'check' < 5000
+    if not hidden
+        overhead "FAIL!" 28
+        script 'Bomb'
+    endif
+    pause 50
+endwhile
+overhead 'GOOD' 72

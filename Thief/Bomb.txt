@@ -1,0 +1,10 @@
+overhead '/bomb!/' 29
+clearsysmsg 
+if hidden
+    stop
+endif
+dclicktype 'bombs' 'backpack'
+pause 250
+if not hidden
+   overhead "RUN!" 29
+endif
